@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PÓLKA - Carta Restaurante</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800&display=swap');
+
+        :root {
+            --polka-klein: #002FA7;
+            --polka-white: #ffffff;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f8f9fa;
+            color: var(--polka-klein);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .menu-container {
+            max-width: 1250px;
+            margin: 0 auto;
+            background-color: var(--polka-white);
+            border: 3px solid var(--polka-klein);
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 47, 167, 0.1);
+        }
+
+        .column-box {
+            border: 1.5px solid var(--polka-klein);
+            padding: 20px;
+            height: 100%;
+            position: relative;
+        }
+
+        .logo-header {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .logo-main {
+            font-weight: 800;
+            letter-spacing: 8px;
+            font-size: 3.5rem;
+            line-height: 1;
+            color: var(--polka-klein);
+        }
+
+        .logo-sub {
+            letter-spacing: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-top: 5px;
+            color: var(--polka-klein);
+        }
+
+        .logo-historia {
+            font-size: 0.65rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: var(--polka-klein);
+            margin-top: 6px;
+            font-style: italic;
+        }
+
+        .category-header {
+            background-color: var(--polka-klein);
+            color: white;
+            text-align: center;
+            padding: 6px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            font-size: 0.85rem;
+        }
+
+        .dish-item {
+            margin-bottom: 22px;
+            page-break-inside: avoid;
+        }
+
+        .dish-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .dish-name {
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            line-height: 1.2;
+        }
+
+        .dish-description {
+            font-size: 0.78rem;
+            line-height: 1.4;
+            margin-top: 5px;
+            font-weight: 400;
+            color: #333;
+        }
+
+        .price {
+            font-weight: 800;
+            white-space: nowrap;
+            font-size: 0.9rem;
+        }
+
+        .tag {
+            font-size: 0.6rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-left: 4px;
+            display: inline-block;
+            vertical-align: middle;
+            border: 1px solid transparent;
+        }
+
+        .tag-casa { background-color: #e0e7ff; color: var(--polka-klein); }
+        .tag-km0 { background-color: #dcfce7; color: #166534; }
+        .tag-veg { background-color: #fef9c3; color: #854d0e; }
+        .tag-nuevo {
+            background-color: white;
+            color: var(--polka-klein);
+            border: 1px solid var(--polka-klein);
+            box-shadow: 1px 1px 0px var(--polka-klein);
+        }
+
+        .dark-section {
+            background-color: var(--polka-klein);
+            color: white;
+            padding: 20px;
+            margin: 15px -5px;
+        }
+
+        .dark-section .dish-description { color: #e0e7ff; }
+        .dark-section .category-header { background-color: white; color: var(--polka-klein); }
+        .dark-section .dish-name, .dark-section .price { color: white; }
+        .dark-section .tag-nuevo { border-color: white; box-shadow: none; }
+
+        .footer-info {
+            margin-top: 30px;
+            text-align: center;
+            border-top: 2px solid var(--polka-klein);
+            padding-top: 20px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .footer-raimundo {
+            margin-top: 16px;
+            text-align: center;
+            font-size: 0.62rem;
+            font-weight: 400;
+            font-style: italic;
+            color: var(--polka-klein);
+            opacity: 0.75;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .qr-section {
+            border: 2px solid var(--polka-klein);
+            padding: 15px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .special-border {
+            border: 2px dashed var(--polka-klein);
+            padding: 10px;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 1024px) {
+            .grid-cols-4 { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 640px) {
+            .grid-cols-4 { grid-template-columns: 1fr; }
+            .menu-container { padding: 20px; }
+            .logo-main { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="menu-container">
+
+    <div class="logo-header">
+        <div class="logo-main">PÓLKA</div>
+        <div class="logo-sub">SAN SEBASTIÁN · PLAZA SARRIEGI</div>
+        <div class="logo-historia">En la Plaza Sarriegi desde 1991 · Homenaje al maestro Raimundo Sarriegui Echeverría</div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+
+        <!-- COLUMNA 1: IMPRESCINDIBLES -->
+        <div class="column-box">
+            <div class="category-header">Imprescindibles</div>
+
+            <div class="dish-item">
+                <div class="dish-header">
+                    <span class="dish-name">"LA POLKA RUSA" <span class="tag tag-casa">CASA</span><span class="tag tag-km0">KM0</span></span>
+                    <span class="price">10,50€</span>
+                </div>
+                <div class="dish-description">Ensaladilla km0, piparras, ventresca, boniato y mahonesa de ventresca. Plato frío (250g / 450g).</div>
+            </div>
+
+            <div class="dish-item">
+                <div class="dish-header">
+                    <span class="dish-name">ANTXOAS MARINADAS (6 UND) <span class="tag tag-casa">CASA</span></span>
+                    <span class="price">12,00€</span>
+                </div>
+                <div class="dish-description">Boquerones de la casa, vinagreta de pimientos y aceite de oliva. Plato frío.</div>
+            </div>
+
+            <div class="dish-item">
+                <div class="dish-header">
+                    <span class="dish-name">CROQUETAS DE ROPA VIEJA Y JAMÓN <span class="tag tag-casa">CASA</span></span>
+                    <span class="price">12,50€</span>
+                </div>
+                <div class="dish-description">Con reducción de tomate. (3 ud. / 5 ud.)</div>
+            </div>
+
+            <div class="dish-item">
+                <div class="dish-header">
+                    <span class="dish-name">CROQUETAS DE CALABAZA <span class="tag tag-casa">CASA</span> <span class="tag tag-veg">VEG</span></span>
+                    <span class="price">12,50€</span>
+                </div>
+                <div class="dish-description">Especiadas con crema de queso Idiazábal. (3 ud. / 5 ud.)</div>
+            </div>
+
+            <div class="mt-4 mb-4">
+                <div class="category-header">COMPARTIBLES</div>
+
+                <div class="dish-item">
+                    <div class="dish-header">
+                        <span class="dish-name">PIMIENTOS Y BOQUERONES DE RAIMUNDO <span class="tag tag-km0">KM0</span></span>
+                        <span class="price">11,00€</span>
+                    </div>
+                    <div class="dish-description">Morrón asado, carnoso y dulce, con boquerones marinados en casa. El contraste que no te esperas.</div>
+                </div>
+
+                <div class="dish-item bg-gray-50 p-2 border-l-4 border-blue-600">
+                    <div class="dish-header">
+                        <span class="dish-name">TABLA ANTIPASTA <span class="tag tag-casa">CASA</span></span>
+                        <span class="price">27,00€</span>
+                    </div>
+                    <div class="dish-description">Variedad de quesos Euskaldunes, chorizo, salchichón, jamón ibérico, aceitunas y patatas.</div>
+                </div>
+
+                <div class="dish-item">
+                    <div class="dish-header">
+                        <span class="dish-name">MEJILLONES AL TXAKOLI CON CREMA DE IDIAZÁBAL <span class="tag tag-nuevo">NUEVO</span></span>
+                        <span class="price">16,00€</span>
+                    </div>
+                    <div class="dish-description">Abiertos al vapor con txakoli, piparra encurtida y pan de la casa. El queso Idiazábal que lo cambia todo.</div>
+                </div>
+            </div>
+
+            <div class="dish-item">
+                <div class="dish-header">
+                    <span class="dish-name">ARITOS DE TXIPIRON <span class="tag tag-km0">KM0</span></span>
+                    <span class="price">13,00€</span>
+                </div>
+                <div class="dish-description">Rebozados con harina de trigo y garbanzos, mahonesa de lima-limón.</div>
+            </div>
+
+            <div class="dish-item">
+                <div class="dish-header">
+                    <span class="dish-name">NACHOS "BATZUK" <span class="tag tag-casa">CASA</span> <span class="tag tag-veg">VEG</span></span>
+                    <span class="price">13,95€</span>
+                </div>
+                <div class="dish-description">Fritos en casa, salsa vizcaína tuneada, ajoarriero, crema de aguacate, alubia roja, guindillas y crema agria.</div>
+            </div>
+
+            <div class="dish-item">
+                <div class="dish-header">
+                    <span class="dish-name">BRAVAS DE RAIMUNDO <span class="tag tag-casa">CASA</span> <span class="tag tag-km0">KM0</span></span>
+                    <span class="price">8,00€</span>
+                </div>
+                <div class="dish-description">Gajos de patata, salsa chipotle, mayonesa de ajos y jalapeño. En honor al maestro Sarriegui, que nos dio la plaza y el nombre.</div>
+            </div>
+        </div>
+
+        <!-- COLUMNA 2: SALADS & BOWLS -->
+        <div class="column-box">
+            <div class="category-header">Salads & Bowls</div>
+
+            <div class="dish-item">
+                <div class="dish-header">
+                    <span class="dish-name">TOMATE MARINERA CON BURRATA <span class="tag tag-nuevo">NUEVO</span> <span class="tag tag-km0">KM0</span></span>
+                    <span class="price">13,50€</span>
+                </div>
+                <div class="dish-description">Tomate KM0, sardinas en aceite, burrata, miel de Urbasa, rúcula y piparra.</div>
+            </div>
+
+            <div class="dish-item">
+                <div class="dish-header">
+                    <span class="dish-name">BETI CÉSAR</span>
+                    <span class="price">13,50€</span>
+                </div>
+                <div class="dish-description">Lechuga, pollo frito, lascas de Idiazábal, tomate, croutones con Espelette y salsa César.</div>
+            </div>
+
+            <div class="dish-item">
+                <div class="dish-header">
+                    <span class="dish-name">HUMMUS CHORICERO <span class="tag tag-veg">VEG</span></span>
+                    <span class="price">12,50€</span>
+                </div>
+                <div class="dish-description">Crema de garbanzo con pimiento choricero, aceite de ajos de la casa, piparra y pimentón de Espelette. Con pan tostado.</div>
+            </div>
+
+            <div class="dish-item">
+                <div class="dish-header">
+                    <span class="dish-name">POLKE SALMÓN BOWL</span>
+                    <span class="price">14,50€</span>
+                </div>
+                <div class="dish-description">Salmón fresco, arroz basmati, lechuga, guacamole, chutney de mango, tomatitos y teriyaki.</div>
+            </div>
+
+            <div class="dark-section rounded-sm">
+                <div class="category-header">A mano</div>
+                <div class="text-center text-[0.6rem] uppercase tracking-widest mb-4 font-bold">Buns & Tako Talos</div>
+
+                <div class="dish-item">
+                    <div class="dish-header">
+                        <span class="dish-name">TXERRI PULLED BURGER</span>
+                        <span class="price">11,50€</span>
+                    </div>
+                    <div class="dish-description">Cerdo desmechado, cheddar, lechuga, cebolla roja y salsa polkera.</div>
+                </div>
+
+                <div class="dish-item">
+                    <div class="dish-header">
+                        <span class="dish-name">CHICKEN BURGER 1838</span>
+                        <span class="price">11,00€</span>
+                    </div>
+                    <div class="dish-description">Muslo frito, huevo cocido, cebolla caramelizada y mahonesa de ajos.</div>
+                </div>
+
+                <div class="dish-item">
+                    <div class="dish-header">
+                        <span class="dish-name">BEYOND POLKA <span class="tag tag-veg">VEG</span> <span class="tag tag-nuevo">NUEVO</span></span>
+                        <span class="price">13,50€</span>
+                    </div>
+                    <div class="dish-description">Hamburguesa vegetal, lechuga, tomate, cebolla caramelizada, cheddar y crema de piquillos. Todo el sabor, otro camino.</div>
+                </div>
+
+                <div class="dish-item">
+                    <div class="dish-header">
+                        <span class="dish-name">LA GILDA DE SARRIEGI <span class="tag tag-nuevo">NUEVO</span></span>
+                        <span class="price">11,50€</span>
+                    </div>
+                    <div class="dish-description">Atún, anchoa, piparra, aceituna gordal, mostaza antigua y cebolla encurtida. La barra en formato bun.</div>
+                </div>
+
+                <div class="dish-item border-t border-blue-400 pt-3 mt-3">
+                    <div class="dish-header">
+                        <span class="dish-name">SANTO TOMÁS (TAKO TALO) <span class="tag tag-km0">KM0</span></span>
+                        <span class="price">7,50€</span>
+                    </div>
+                    <div class="dish-description">Típico Talo de San Sebastián de harina de maíz, txistorra de Irun, pico de gallo y aguacate.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COLUMNA 3: POLKSTARS -->
+        <div class="column-box">
+            <div class="category-header">POLKSTARS</div>
+
+            <div class="dish-item mt-6">
+                <div class="dish-header">
+                    <span class="dish-name">"FISH AND CHIPS" DE BACALAO</span>
+                    <span class="price">13,90€</span>
+                </div>
+                <div class="dish-description">Bacalao en tempura con salsa tártara y gajos de lima.</div>
+            </div>
+
+            <div class="dish-item">
+                <div class="dish-header">
+                    <span class="dish-name">TXIPIRONES "PELATINTA"</span>
+                    <span class="price">13,50€</span>
+                </div>
+                <div class="dish-description">Guisados en su tinta, arroz basmati, cebolla caramelizada y mahonesa de ajos.</div>
+            </div>
+
+            <div class="dish-item">
+                <div class="dish-header">
+                    <span class="dish-name">LOMO DE BAKALAO "CHIPO-ARRIERO"</span>
+                    <span class="price">15,50€</span>
+                </div>
+                <div class="dish-description">250g de bacalao con salsa ajoarriero y un toque chipotle.</div>
+            </div>
+
+            <div class="dish-item">
+                <div class="dish-header">
+                    <span class="dish-name">WOK LUMAGORRI TANDOORI <span class="tag tag-nuevo">NUEVO</span> <span class="tag tag-km0">KM0</span></span>
+                    <span class="price">16,50€</span>
+                </div>
+                <div class="dish-description">Pollo Lumagorri en especias tandoori, fideos soba, pimiento de Gernika, jengibre y txakoli. Mahonesa de choricero.</div>
+            </div>
+
+            <div class="dish-item">
+                <div class="dish-header">
+                    <span class="dish-name">MAGRET DE PATO</span>
+                    <span class="price">24,50€</span>
+                </div>
+                <div class="dish-description">Pechuga de pato, chutney de mango, boniato frito y ensalada.</div>
+            </div>
+
+            <div class="special-border">
+                <div class="dish-header">
+                    <span class="dish-name">"T-BONE STEAK"</span>
+                    <span class="price">46,00€</span>
+                </div>
+                <div class="dish-description">Entrecot y solomillo con patatas, ensalada y mojo de piquillos. (Viernes y Sábados)</div>
+            </div>
+
+            <div class="mt-8 p-3 bg-gray-50 border border-blue-200">
+                <div class="text-[0.65rem] font-bold text-center mb-2 uppercase">Menú Infantil</div>
+                <div class="dish-header">
+                    <span class="dish-name">MENÚ TXIKIA</span>
+                    <span class="price">14,95€</span>
+                </div>
+                <div class="dish-description">Burger o fingers + patatas + refresco.</div>
+            </div>
+        </div>
+
+        <!-- COLUMNA 4: POSTRES -->
+        <div class="column-box">
+            <div class="category-header">Para terminar bien</div>
+            <div style="text-align: center; font-style: italic; font-weight: 400; margin-bottom: 25px; font-size: 0.8rem; opacity: 0.8;">Etxeko Postreak — Caseros</div>
+
+            <div class="dish-item">
+                <div class="dish-header">
+                    <span class="dish-name">CHEESECAKE <span class="tag tag-casa">CASA</span><span class="tag tag-veg">VEG</span></span>
+                    <span class="price">6,50€</span>
+                </div>
+                <div class="dish-description">Nuestra tarta cremosa de queso Donostiarra mundialmente famosa.</div>
+            </div>
+
+            <div class="dish-item">
+                <div class="dish-header">
+                    <span class="dish-name">TXOKOLATEA <span class="tag tag-veg">VEG</span></span>
+                    <span class="price">6,50€</span>
+                </div>
+                <div class="dish-description">Bizcocho de chocolate templado, crema de maracuyá y salsa de cacao.</div>
+            </div>
+
+            <div class="dish-item">
+                <div class="dish-header">
+                    <span class="dish-name">TABLA SAGARDOTEGI <span class="tag tag-veg">VEG</span></span>
+                    <span class="price">7,00€</span>
+                </div>
+                <div class="dish-description">Queso Idiazábal, nueces, membrillo y manzanas en almíbar.</div>
+            </div>
+
+            <div class="dish-item border-l-4 border-blue-700 pl-4 py-2 bg-blue-50">
+                <div class="dish-header">
+                    <span class="dish-name">TORRIJA & MAMIA <span class="tag tag-nuevo">NUEVO</span></span>
+                    <span class="price">8,50€</span>
+                </div>
+                <div class="dish-description">Pan brioche tostado, helado de Mamia y caramelo de sidra.</div>
+            </div>
+
+            <div class="qr-section mt-8">
+                <div class="text-[0.6rem] font-bold mb-3 uppercase tracking-tighter leading-tight">ESCANEA LA CARTA DE VINOS Y NUESTROS "POLKTAILS"</div>
+                <div class="flex justify-center">
+                    <svg viewBox="0 0 100 100" class="w-24 h-24" fill="var(--polka-klein)">
+                        <path d="M10 10h30v30h-30zM15 15v20h20v-20zM60 10h30v30h-30zM65 15v20h20v-20zM10 60h30v30h-30zM15 65v20h20v-20zM45 45h10v10h-10zM70 70h20v20h-20zM55 70h5v5h-5zM80 55h5v5h-5z" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-info">
+        10% de suplemento en terraza · Todos los precios incluyen IVA · San Sebastián
+    </div>
+
+    <div class="footer-raimundo">
+        PÓLKA es un homenaje a Raimundo Sarriegui Echeverría (1838–1913), compositor donostiarra nacido a pocos metros de aquí.<br>
+        Autor de la Marcha de San Sebastián y la Comparsa de Caldereros. Llevamos en su plaza desde 1991.
+    </div>
+
+</div>
+
+</body>
+</html>
