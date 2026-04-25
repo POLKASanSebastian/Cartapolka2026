@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -36,11 +36,14 @@
             padding: 20px;
             height: 100%;
             position: relative;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
         }
 
         .logo-header {
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 30px;
         }
 
         .logo-main {
@@ -57,14 +60,22 @@
             font-weight: 700;
             margin-top: 5px;
             color: var(--polka-klein);
+            font-variant: all-small-caps;
         }
 
-        .logo-historia {
-            font-size: 0.65rem;
-            font-weight: 400;
-            letter-spacing: 2px;
+        .claim-principal {
+            font-size: 1.1rem;
+            font-weight: 500;
+            font-style: italic;
+            margin: 15px 0;
             color: var(--polka-klein);
-            margin-top: 6px;
+        }
+
+        .narrativa-header {
+            font-size: 0.75rem;
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--polka-klein);
             font-style: italic;
         }
 
@@ -82,7 +93,6 @@
 
         .dish-item {
             margin-bottom: 22px;
-            page-break-inside: avoid;
         }
 
         .dish-header {
@@ -145,38 +155,61 @@
         .dark-section .dish-description { color: #e0e7ff; }
         .dark-section .category-header { background-color: white; color: var(--polka-klein); }
         .dark-section .dish-name, .dark-section .price { color: white; }
-        .dark-section .tag-nuevo { border-color: white; box-shadow: none; }
 
-        .footer-info {
+        .glosario-container {
+            border: 1px solid var(--polka-klein);
+            background-color: #fcfcfc;
+            padding: 12px;
+            margin-top: 15px;
+        }
+
+        .glosario-title {
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            text-align: center;
+            border-bottom: 1px solid var(--polka-klein);
+            padding-bottom: 4px;
+        }
+
+        .glosario-content {
+            font-size: 0.62rem;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        .glosario-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2px;
+        }
+
+        /* Ilustración integrada en el cajón */
+        .cajon-ilustracion {
+            margin-top: auto;
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        .cajon-ilustracion img {
+            max-width: 100%;
+            height: auto;
+            filter: invert(18%) sepia(80%) saturate(2500%) hue-rotate(220deg) brightness(1.1) contrast(0.9) opacity(0.4);
+            display: block;
+            margin: 0 auto;
+        }
+
+        .footer-legal {
             margin-top: 30px;
             text-align: center;
             border-top: 2px solid var(--polka-klein);
             padding-top: 20px;
             font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .footer-raimundo {
-            margin-top: 16px;
-            text-align: center;
-            font-size: 0.62rem;
-            font-weight: 400;
-            font-style: italic;
-            color: var(--polka-klein);
-            opacity: 0.75;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+            font-weight: 600;
+            letter-spacing: 0.5px;
             line-height: 1.6;
-        }
-
-        .qr-section {
-            border: 2px solid var(--polka-klein);
-            padding: 15px;
-            text-align: center;
-            margin-top: 30px;
         }
 
         .special-border {
@@ -201,16 +234,21 @@
 
 <div class="menu-container">
 
-    <!-- Encabezado con el Logo -->
+    <!-- CABECERA -->
     <div class="logo-header">
         <div class="logo-main">PÓLKA</div>
         <div class="logo-sub">SAN SEBASTIÁN · PLAZA SARRIEGI</div>
-        <div class="logo-historia">En la Plaza Sarriegi desde 1991 · Homenaje al maestro Raimundo Sarriegui Echeverría</div>
+        <div class="claim-principal">Cocina de aquí, recetas de allá. De aquí, de allá.</div>
+        <div class="narrativa-header">
+            En la Plaza Sarriegi desde 1991.<br>
+            Homenaje al maestro Raimundo Sarriegui (1838-1913), compositor de la Tamborrada donostiarra.<br>
+            La Polka de Tambores es la pieza más alegre de la marcha — y eso es lo que servimos.
+        </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
 
-        <!-- COLUMNA 1: IMPRESCINDIBLES -->
+        <!-- COLUMNA 1 -->
         <div class="column-box">
             <div class="category-header">Imprescindibles</div>
 
@@ -219,7 +257,19 @@
                     <span class="dish-name">"LA POLKA RUSA" <span class="tag tag-casa">CASA</span><span class="tag tag-km0">KM0</span></span>
                     <span class="price">6,00€ / 10,50€</span>
                 </div>
-                <div class="dish-description">Ensaladilla km0, piparras, ventresca, boniato y mahonesa de ventresca. Plato frío (250g / 450g).</div>
+                <div class="dish-description">Ensaladilla km0, piparras, ventresca, boniato y mahonesa de ventresca. (250g / 450g).</div>
+            </div>
+
+            <div class="dish-item">
+                <div class="dish-header">
+                    <span class="dish-name">
+                        CROQUETAS DE CALABAZA 
+                        <span class="tag tag-casa">CASA</span> 
+                        <span class="tag tag-veg">VEG</span>
+                    </span>
+                    <span class="price">9,00€ / 13,75€</span>
+                </div>
+                <div class="dish-description">Especiadas con crema de queso Idiazabal. (3 ud. / 5 ud.)</div>
             </div>
 
             <div class="dish-item">
@@ -235,22 +285,13 @@
                     <span class="dish-name">ANTXOAS MARINADAS (6 UND) <span class="tag tag-casa">CASA</span></span>
                     <span class="price">12,00€</span>
                 </div>
-                <!-- ACTUALIZADO: Eliminado "de la casa" -->
                 <div class="dish-description">Boquerones, vinagreta de pimientos y aceite de oliva. Plato frío.</div>
-            </div>
-
-            <div class="dish-item">
-                <div class="dish-header">
-                    <span class="dish-name">CROQUETAS DE CALABAZA <span class="tag tag-casa">CASA</span> <span class="tag tag-veg">VEG</span></span>
-                    <span class="price">9,00€ / 13,75€</span>
-                </div>
-                <div class="dish-description">Especiadas con crema de queso Idiazábal. (3 ud. / 5 ud.)</div>
             </div>
 
             <div class="mt-4 mb-4">
                 <div class="category-header">COMPARTIBLES</div>
 
-                <div class="dish-item bg-gray-50 p-2 border-l-4 border-blue-600">
+                <div class="dish-item">
                     <div class="dish-header">
                         <span class="dish-name">TABLA ANTIPASTA <span class="tag tag-casa">CASA</span></span>
                         <span class="price">29,00€</span>
@@ -287,7 +328,7 @@
                         <span class="dish-name">PIMIENTOS Y BOQUERONES DE RAIMUNDO <span class="tag tag-km0">KM0</span></span>
                         <span class="price">13,00€</span>
                     </div>
-                    <div class="dish-description">Morrón asado, carnoso y dulce, con boquerones marinados en casa. El contraste que no te esperas.</div>
+                    <div class="dish-description">Pimiento morrón asado a fuego lento, carnoso y dulce, con boquerones marinados en casa. El contraste que no te esperas.</div>
                 </div>
 
                 <div class="dish-item">
@@ -295,12 +336,12 @@
                         <span class="dish-name">BRAVAS "AGUADORA" <span class="tag tag-casa">CASA</span> <span class="tag tag-km0">KM0</span></span>
                         <span class="price">8,00€</span>
                     </div>
-                    <div class="dish-description">Gajos de patata, salsa chipotle, mayonesa de ajos y jalapeño.</div>
+                    <div class="dish-description">Gajos de patata, salsa chipotle, mayonesa de ajos y jalapeño. En honor al maestro Sarriegui.</div>
                 </div>
             </div>
         </div>
 
-        <!-- COLUMNA 2: SALADS & BOWLS -->
+        <!-- COLUMNA 2 -->
         <div class="column-box">
             <div class="category-header">Salads & Bowls</div>
 
@@ -317,7 +358,7 @@
                     <span class="dish-name">POLKE SALMÓN BOWL</span>
                     <span class="price">15,95€</span>
                 </div>
-                <div class="dish-description">Salmón fresco, arroz basmati, lechuga, guacamole, chutney de mango, tomatitos y teriyaki.</div>
+                <div class="dish-description">Salmón fresco, arroz basmati, lechuga, guacamole, chutney de mango, tomatitos y teriyaki. Cuatro continentes en un bol.</div>
             </div>
 
             <div class="dish-item">
@@ -325,7 +366,7 @@
                     <span class="dish-name">BETI CÉSAR</span>
                     <span class="price">13,50€</span>
                 </div>
-                <div class="dish-description">Lechuga, pollo frito, lascas de Idiazábal, tomate, croutones con Espelette y salsa César.</div>
+                <div class="dish-description">Lechuga, pollo frito, lascas de Idiazabal, tomate, croutones con Espelette y salsa César.</div>
             </div>
 
             <div class="dish-item">
@@ -333,11 +374,9 @@
                     <span class="dish-name">HUMMUS CHORICERO <span class="tag tag-veg">VEG</span></span>
                     <span class="price">12,50€</span>
                 </div>
-                <!-- ACTUALIZADO: Eliminado "de la casa" -->
-                <div class="dish-description">Crema de garbanzo con pimiento choricero, aceite de ajos, piparra y pimentón de Espelette. Con pan tostado.</div>
+                <div class="dish-description">Crema de garbanzo con pimiento choricero, aceite de ajos, piparra y pimentón de Espelette.</div>
             </div>
 
-            <!-- Sección "A MANO" -->
             <div class="dark-section rounded-sm">
                 <div class="category-header">A MANO</div>
                 <div class="text-center text-[0.6rem] uppercase tracking-widest mb-4 font-bold">BURGER & TAKO TALOS</div>
@@ -384,7 +423,7 @@
             </div>
         </div>
 
-        <!-- COLUMNA 3: POLKSTARS -->
+        <!-- COLUMNA 3 -->
         <div class="column-box">
             <div class="category-header">POLKSTARS</div>
 
@@ -393,7 +432,7 @@
                     <span class="dish-name">"T-BONE STEAK"</span>
                     <span class="price">48,00€</span>
                 </div>
-                <div class="dish-description">Entrecot y solomillo con patatas, ensalada y mojo de piquillos. (Viernes y Sábados)</div>
+                <div class="dish-description">Entrecot y solomillo (≈600g) con patatas, ensalada y mojo de piquillos. Para compartir entre 2. Viernes y Sábados.</div>
             </div>
 
             <div class="dish-item">
@@ -409,7 +448,7 @@
                     <span class="dish-name">LOMO DE BAKALAO "CHIPO-ARRIERO"</span>
                     <span class="price">19,00€</span>
                 </div>
-                <div class="dish-description">250g de bacalao con salsa ajoarriero y un toque chipotle.</div>
+                <div class="dish-description">250g de bacalao con salsa ajoarriero tradicional y un toque chipotle. El Pirineo se cruza con México.</div>
             </div>
 
             <div class="dish-item">
@@ -454,17 +493,17 @@
             </div>
         </div>
 
-        <!-- COLUMNA 4: POSTRES -->
+        <!-- COLUMNA 4 -->
         <div class="column-box">
             <div class="category-header">Para terminar bien</div>
             <div style="text-align: center; font-style: italic; font-weight: 400; margin-bottom: 25px; font-size: 0.8rem; opacity: 0.8;">Etxeko Postreak — Caseros</div>
 
-            <div class="dish-item border-l-4 border-blue-600 pl-3 py-1 bg-blue-50/50 rounded-r">
+            <div class="dish-item">
                 <div class="dish-header">
                     <span class="dish-name">TABLA SAGARDOTEGI <span class="tag tag-veg">VEG</span></span>
                     <span class="price">7,50€</span>
                 </div>
-                <div class="dish-description">Queso Idiazábal, nueces, membrillo y manzanas en almíbar.</div>
+                <div class="dish-description">Queso Idiazabal, nueces, membrillo y manzanas en almíbar.</div>
             </div>
 
             <div class="dish-item">
@@ -491,7 +530,7 @@
                 <div class="dish-description">Pan brioche tostado, helado de Mamia y caramelo de sidra.</div>
             </div>
 
-            <div class="qr-section mt-8">
+            <div class="qr-section mt-8 text-center">
                 <div class="text-[0.6rem] font-bold mb-3 uppercase tracking-tighter leading-tight">ESCANEA LA CARTA DE VINOS Y NUESTROS "POLKTAILS"</div>
                 <div class="flex justify-center">
                     <svg viewBox="0 0 100 100" class="w-24 h-24" fill="var(--polka-klein)">
@@ -499,17 +538,31 @@
                     </svg>
                 </div>
             </div>
+
+            <!-- BLOQUE: GLOSARIO POLKERO -->
+            <div class="glosario-container">
+                <div class="glosario-title">Glosario Polkero</div>
+                <div class="glosario-content">
+                    <div class="glosario-item"><span><strong>Beti Alai</strong></span> <span>siempre alegre</span></div>
+                    <div class="glosario-item"><span><strong>Batzuk</strong></span> <span>unos cuantos</span></div>
+                    <div class="glosario-item"><span><strong>Eskupilota</strong></span> <span>pelota a mano</span></div>
+                    <div class="glosario-item"><span><strong>Aguadora</strong></span> <span>servidora de agua</span></div>
+                    <div class="glosario-item"><span><strong>Txerri</strong></span> <span>cerdo</span></div>
+                    <div class="glosario-item"><span><strong>Etxeko</strong></span> <span>de la casa</span></div>
+                    <div class="glosario-item"><span><strong>Polktail</strong></span> <span>cóctel (ver QR)</span></div>
+                </div>
+            </div>
+
+            <div class="cajon-ilustracion">
+                <img src="Gemini_Generated_Image_a2uap7a2uap7a2ua.png" alt="Polka de Tambores">
+            </div>
         </div>
-
     </div>
 
-    <div class="footer-info">
-        10% de suplemento en terraza · Todos los precios incluyen IVA · San Sebastián
-    </div>
-
-    <div class="footer-raimundo">
-        PÓLKA es un homenaje a Raimundo Sarriegui Echeverría (1838–1913), compositor donostiarra nacido a pocos metros de aquí.<br>
-        Autor de la Marcha de San Sebastián y la Comparsa de Caldereros. Llevamos en su plaza desde 1991.
+    <div class="footer-legal">
+        Precios con IVA incluido. Información sobre alérgenos disponible. Consulte a nuestro equipo.<br>
+        Carta de vinos y Polktails disponibles vía QR.<br>
+        10% de suplemento en terraza · San Sebastián · Parte Vieja · Plaza Sarriegi
     </div>
 
 </div>
